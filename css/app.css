@@ -1,0 +1,109 @@
+body {
+    background: black;
+	position: relative;
+}
+
+header {
+    margin: auto 300px;
+    margin-bottom: 30px;
+	text-align: center;
+}
+
+h1 {
+    color: #2ecc71;
+    font-size: 4em;
+}
+
+#startBtn {
+	text-align: center;
+	position: absolute;
+	top: calc(25%);
+	left: calc(45%);
+	z-index: 1;
+}
+
+.btn {
+	width: 200px;
+    height: 60px;
+    border-radius: 30px;
+	
+	border: none;
+	font-family: inherit;
+	font-size: 30px;
+	cursor: pointer;
+	display: inline-block;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	transition: all 0.3s;
+	
+	color: #fff;
+	overflow: hidden;
+	background: #2ecc71;	
+}
+
+.btn:active {
+	border-color: #17954c;
+	color: #17954c;
+}
+
+.btn:hover {
+	background: #24b662;
+}
+
+.road {
+	margin: auto 300px;
+	border-right: 10px dashed #fff;
+}
+
+.ticker {
+	color: #2ecc71;
+	font-size: 12em;
+    position: absolute;
+    top: 40%;
+	left: 48%;
+	visibility: hidden;
+}
+
+.car {
+   width: 165px;
+   height: 70px;
+   background-image: url(../img/cars-s.png);
+   background-repeat: no-repeat; 
+   margin-bottom: 20px;
+   position: relative;  
+   display: inline-block;
+}
+
+#car1 {
+	background-position: -18px 0;
+}
+
+#car2 {
+	background-position: -18px -85px;
+}
+
+#car3 {
+	background-position: -18px -170px;
+}
+
+#car4 {
+	background-position: -18px -255px;
+}
+
+#car5 {
+	background-position: -211px 0;
+}
+
+#car6 {
+	background-position: -217px -85px;
+}
+
+#car7 {
+	background-position: -211px -170px;
+}
+
+#car8 {
+	background-position: -211px -255px;
+}
