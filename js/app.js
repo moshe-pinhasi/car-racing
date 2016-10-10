@@ -1,23 +1,17 @@
 // the sounds took from http://soundbible.com/free-sound-effects-4.html
 
-class Random {
-	nextInt(maxNumber) {
-		return Math.floor((Math.random() * maxNumber));
-	}
-}
+const audioStart        = new Sound('gunshot');
+const audioTicker       = new Sound('tick');
+const audioCheering     = new Sound('cheering');
+const audioCarAccelerating     = new Sound('car-accelerating');
 
-const audioStart        = new Audio('sounds/gunshot.mp3');
-const audioTicker       = new Audio('sounds/tick.mp3');
-const audioCheering     = new Audio('sounds/cheering.mp3');
-const audioCarAccelerating     = new Audio('sounds/car-accelerating.mp3');
-
+const random = new Random();
 
 const elCars = Array.from(document.querySelectorAll('.car'));
-const random = new Random();
+const END_OF_GAME = document.getElementById('road').offsetWidth - elCars[0].offsetWidth;
 const maxPower = 20;
 const roundGap = 5;
 
-const END_OF_GAME = document.getElementById('road').offsetWidth - elCars[0].offsetWidth;
 
 // Here is our DOM operation for moving that car:
 const moveCar = (elCar, power) => {
@@ -27,10 +21,24 @@ const moveCar = (elCar, power) => {
 	return currLoc;
 };
 
+const getElementById = (id) => document.getElementById(id);
+const setVisibility = (el, visibility) => el.style.visibility = visibility;
+const showElement = (id) => setVisibility(getElementById(id), "visible");
+const hideElement = (id) => setVisibility(getElementById(id), "hidden");
+
 const endGame = () => {
-	audioCarAccelerating.pause();
-	audioCheering.play();
-	document.getElementById('startBtn').style.visibility = "visible";
+	
+	audioCarAccelerating
+		.removeListener('focus')
+		.removeListener('blur')
+		.stop();
+		
+	audioCheering
+		.addListener('focus')
+		.addListener('blur')
+		.play();
+		
+	showElement('startBtn');
 };
 			
 const makeRound = () => setTimeout( () => {
@@ -48,15 +56,21 @@ const makeRound = () => setTimeout( () => {
 }, roundGap);
 
 const start = () => {
-	document.getElementById('ticker').style.visibility = "hidden";
+	hideElement('ticker');
 	audioStart.play();
-	audioCarAccelerating.play();
+	
+	audioCarAccelerating
+		.addListener('focus')
+		.addListener('blur')
+		.play();	
+	
 	makeRound();
 };
 
+const tickerEl = getElementById('ticker');
 const ticker = (tikerVal) => {
 	if (tikerVal > 0) {
-		document.getElementById('ticker').innerHTML  = tikerVal;
+		tickerEl.innerHTML  = tikerVal;
 		audioTicker.play();
 		setTimeout( () => ticker(--tikerVal), 1000);
 		return;
@@ -67,15 +81,16 @@ const ticker = (tikerVal) => {
 
 const init = () => {
 
-	document.getElementById('startBtn').style.visibility = "hidden";
-	elCars.forEach( elCar => elCar.style.left = 0);
+	audioCheering
+		.removeListener('focus')
+		.removeListener('blur')
+		.stop();
+		
+	hideElement('startBtn');
+	showElement('ticker');
 	
-	audioCheering.pause();
-	audioCheering.currentTime = 0;
-	audioCarAccelerating.currentTime = 0;
-	tikerVal = 3;
+	elCars.forEach( elCar => elCar.style.left = 0);	
 	
-	document.getElementById('ticker').style.visibility = "visible";	
 };
 
 const newGame = () => {
