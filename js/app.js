@@ -32,7 +32,7 @@ const endGame = () => {
 	audioCheering.play();
 	document.getElementById('startBtn').style.visibility = "visible";
 };
-				
+			
 const makeRound = () => setTimeout( () => {
 	const carId = random.nextInt(elCars.length);
 	const power = random.nextInt(maxPower);
@@ -80,5 +80,5 @@ const init = () => {
 
 const newGame = () => {
 	init();
-	start(3);
+	ticker(3);
 };
