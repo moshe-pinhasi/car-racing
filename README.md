@@ -1,3 +1,3 @@
 # cars race
 
-see demo [here](https://moyesh.github.io/car-racing/)
+see demo [here](https://moshe-pinhasi.github.io/car-racing/)
